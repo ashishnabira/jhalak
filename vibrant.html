@@ -4,29 +4,23 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Vibrant's IT Infra</title>
+		<title>reveal.js - The HTML Presentation Framework</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Go Open Solutions">
+		<meta name="author" content="Hakim El Hattab">
 
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
 
-		<!-- Theme used for syntax highlighting of code -->
+		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
 		</script>
 
 		<!--[if lt IE 9]>
@@ -40,8 +34,6 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-
-
 <section data-markdown>
        <script type="text/template">
 
@@ -55,12 +47,13 @@
  </script>
  </section>
 
+
 <section data-markdown>
        <script type="text/template">
 ## Mail Server
 
         Ip Address : 192.168.3.50  (Bangalore)
-        Ip Address : 192.168.99.11  (Pune)
+        Ip Address : 192.168.99.9  (Pune)
         WAN Ip Address: 182.72.112.163
         OS : Ubuntu 16
         Softwares: Postfix, dovecot, MySQL, 
@@ -97,6 +90,23 @@
  </script>
  </section>
 
+
+<section data-markdown >
+<script type="text/template">
+### Nginx Proxy
+
+	ip: 192.168.3.50
+
+	all config files are in /etc/nginx/sites-enabled/
+	
+	/var/log/nginx
+
+	service nginx restart
+
+
+ </script>
+ </section>
+
 <section data-markdown >
 <script type="text/template">
 ### Virtualization( Ovirt)
@@ -109,6 +119,26 @@
 
  </script>
  </section>
+
+<section data-markdown >
+<script type="text/template">
+### Pune Virtualization( Virtualbox)
+
+	ip: 192.168.99.9
+	
+	Cento6
+
+	Running 2 Windows VM,  MS-AD and Online tool backup
+
+	BCP mail server is running on Centos6 only
+
+	Virtualbox is running under vspladmin user
+
+	You can login to this server from 192.168.3.54
+
+	
+</script>
+</section>
 
 <section data-markdown >
 <script type="text/template">
@@ -182,6 +212,7 @@
 	Mail Services
 	Mail encryption
 	Webmail
+	backup mail at pune
 	Mail Monitoring reports
 	Mail Admin Console
 	OpenDKIM
@@ -202,7 +233,8 @@
 <section data-markdown >
 <script type="text/template">
 ### Recommended Technologies for Vibrant
-
+	Cloud service
+	online spreadsheet
 	Chat Services for all employees
 	Ticketing System for change requests and support
 	Central Log Analysis Software
@@ -299,39 +331,33 @@ futuristic.
 </script>
 </section>
 
-
-
-
-
-
-
 			</div>
 
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+		<script src="js/reveal.min.js"></script>
 
 		<script>
 
-			// More info https://github.com/hakimel/reveal.js#configuration
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				controls: true,
 				progress: true,
 				history: true,
-				center: true,
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
+				// Optional libraries used to extend on reveal.js
 				dependencies: [
 					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/search/search.js', async: true },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
 
